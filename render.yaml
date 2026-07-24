@@ -1,15 +1,16 @@
 services:
   - type: web
-    name: truthlens-ai
+    name: truthlens
     runtime: python
-    buildCommand: pip install -r requirements.txt && python bootstrap_model.py
-    startCommand: gunicorn app:app --workers 2 --threads 2 --timeout 120 --bind 0.0.0.0:$PORT
-    envVars:
-      - key: SECRET_KEY
-        generateValue: true
-      - key: FLASK_DEBUG
-        value: "0"
-    disk:
-      name: data
-      mountPath: /opt/render/project/src/instance
-      sizeGB: 1
+
+    plan: free
+
+    pythonVersion: "3.11.11"
+
+    buildCommand: |
+      python -m pip install --upgrade pip
+      pip install -r requirements.txt
+
+    startCommand: gunicorn app:app
+
+    autoDeploy: true
