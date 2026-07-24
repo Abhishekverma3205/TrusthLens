@@ -1,0 +1,121 @@
+{% extends "base.html" %}
+{% block title %}Profile — TruthLens AI{% endblock %}
+{% block extra_css %}
+<style>
+.profile-avatar{width:110px;height:110px;border-radius:50%;background:linear-gradient(135deg,#6366f1,#06b6d4);display:flex;align-items:center;justify-content:center;font-size:3rem;margin:0 auto 20px;}
+.profile-hero{padding:100px 0 60px;text-align:center;}
+.stat-badge{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:20px;padding:28px;text-align:center;transition:.3s;}
+.stat-badge:hover{transform:translateY(-6px);box-shadow:0 15px 40px rgba(99,102,241,.2);}
+.stat-badge h2{font-size:2.5rem;font-weight:700;margin-bottom:6px;}
+.form-section{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:24px;padding:36px;backdrop-filter:blur(20px);}
+.form-section h4{margin-bottom:24px;font-weight:600;}
+.form-control{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:white;border-radius:14px;padding:14px 18px;}
+.form-control:focus{background:rgba(255,255,255,.08);border-color:#6366f1;color:white;box-shadow:0 0 15px rgba(99,102,241,.25);}
+.form-control::placeholder{color:#94a3b8;}
+.form-label{color:#94a3b8;font-size:14px;margin-bottom:8px;}
+</style>
+{% endblock %}
+
+{% block content %}
+
+<section class="profile-hero">
+  <div class="container">
+    <div class="profile-avatar">{{ user.full_name[0].upper() }}</div>
+    <h2>{{ user.full_name }}</h2>
+    <p style="color:var(--sub);">@{{ user.username }} &nbsp;·&nbsp; {{ user.email }}</p>
+    <p style="color:#6366f1;font-size:13px;">Member since {{ user.created_at[:10] }}</p>
+  </div>
+</section>
+
+<!-- Stats -->
+<section class="pb-5">
+  <div class="container">
+    <div class="row g-4 mb-5">
+      <div class="col-md-4">
+        <div class="stat-badge">
+          <h2 style="color:#6366f1;">{{ stats.total }}</h2>
+          <p style="color:var(--sub);">Total Analyses</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-badge">
+          <h2 style="color:#22c55e;">{{ stats.real }}</h2>
+          <p style="color:var(--sub);">Real News Found</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="stat-badge">
+          <h2 style="color:#ef4444;">{{ stats.fake }}</h2>
+          <p style="color:var(--sub);">Fake News Caught</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-4">
+      <!-- Edit Profile -->
+      <div class="col-lg-6">
+        <div class="form-section">
+          <h4>✏️ Edit Profile</h4>
+          <form method="POST" action="{{ url_for('update_user_profile') }}">
+            <div class="mb-3">
+              <label class="form-label">Full Name</label>
+              <input class="form-control" name="full_name" value="{{ user.full_name }}" required>
+            </div>
+            <div class="mb-4">
+              <label class="form-label">Email Address</label>
+              <input class="form-control" type="email" name="email" value="{{ user.email }}" required>
+            </div>
+            <button class="btn btn-primary w-100" type="submit">Update Profile</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Change Password -->
+      <div class="col-lg-6">
+        <div class="form-section">
+          <h4>🔑 Change Password</h4>
+          <form method="POST" action="{{ url_for('update_password') }}">
+            <div class="mb-4">
+              <label class="form-label">New Password</label>
+              <input class="form-control" type="password" name="password" placeholder="Minimum 8 characters" required minlength="8">
+            </div>
+            <div class="mb-4">
+              <label class="form-label">Confirm Password</label>
+              <input class="form-control" type="password" id="confirmPass" placeholder="Repeat new password" required>
+            </div>
+            <div id="passMatchMsg" style="font-size:13px;margin-top:-12px;margin-bottom:16px;"></div>
+            <button class="btn btn-danger w-100" type="submit" id="changePassBtn">Change Password</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5">
+      <a href="{{ url_for('detector') }}" class="btn btn-primary px-5 me-3">🧠 New Analysis</a>
+      <a href="{{ url_for('dashboard') }}" class="btn btn-outline-light px-5">📊 Dashboard</a>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+const p = document.querySelector('[name="password"]');
+const c = document.getElementById('confirmPass');
+const msg = document.getElementById('passMatchMsg');
+const btn = document.getElementById('changePassBtn');
+function checkMatch(){
+  if(!c.value) { msg.innerHTML=''; return; }
+  if(p.value === c.value){
+    msg.innerHTML='<span style="color:#22c55e;">✓ Passwords match</span>';
+    btn.disabled = false;
+  } else {
+    msg.innerHTML='<span style="color:#ef4444;">✗ Passwords do not match</span>';
+    btn.disabled = true;
+  }
+}
+p.addEventListener('input', checkMatch);
+c.addEventListener('input', checkMatch);
+</script>
+{% endblock %}

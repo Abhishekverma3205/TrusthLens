@@ -1,0 +1,29 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+
+# Flask
+instance/
+*.db
+
+# Models (commit models/ or regenerate on deploy)
+# models/   ← uncomment to regenerate on every deploy
+
+# Data CSVs (large files)
+data/*.csv
+
+# Reports
+reports/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp

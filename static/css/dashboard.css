@@ -1,0 +1,238 @@
+.dashboard-header{
+
+padding:100px 0 60px;
+
+text-align:center;
+
+}
+
+.dashboard-header h1{
+
+font-size:55px;
+
+font-weight:700;
+
+}
+
+.dashboard-header p{
+
+color:var(--sub);
+
+font-size:20px;
+
+margin-top:15px;
+
+}
+
+.dashboard-cards{
+
+padding-bottom:80px;
+
+}
+
+.dashboard-card{
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(25px);
+
+border:1px solid rgba(255,255,255,.08);
+
+border-radius:25px;
+
+padding:35px;
+
+transition:.35s;
+
+}
+
+.dashboard-card:hover{
+
+transform:translateY(-8px);
+
+box-shadow:0 20px 50px rgba(99,102,241,.2);
+
+}
+
+.dashboard-card h6{
+
+color:var(--sub);
+
+margin-bottom:20px;
+
+}
+
+.dashboard-card h2{
+
+font-size:38px;
+
+font-weight:700;
+
+}
+
+.online{
+
+color:#22c55e;
+
+}
+
+.chart-section{
+
+padding-bottom:80px;
+
+}
+
+.chart-card{
+
+background:rgba(255,255,255,.05);
+
+backdrop-filter:blur(25px);
+
+border-radius:25px;
+
+padding:35px;
+
+border:1px solid rgba(255,255,255,.08);
+
+}
+
+.chart-card canvas{
+
+margin-top:25px;
+
+}
+
+.performance-section{
+
+padding-bottom:120px;
+
+}
+
+.activity-list{
+
+list-style:none;
+
+padding:0;
+
+}
+
+.activity-list li{
+
+padding:18px 0;
+
+border-bottom:1px solid rgba(255,255,255,.08);
+
+}
+
+.table{
+
+color:white;
+
+}
+
+.table th{
+
+border:none;
+
+}
+
+.table td{
+
+border-color:rgba(255,255,255,.05);
+
+}
+
+@media(max-width:991px){
+
+.dashboard-header h1{
+
+font-size:40px;
+
+}
+
+}
+
+.gauge-wrapper{
+
+position:relative;
+
+width:240px;
+
+height:240px;
+
+margin:auto;
+
+}
+
+.gauge-value{
+
+position:absolute;
+
+top:50%;
+
+left:50%;
+
+transform:translate(-50%,-50%);
+
+font-size:34px;
+
+font-weight:700;
+
+}
+
+#liveClock{
+
+font-size:42px;
+
+font-weight:700;
+
+text-align:center;
+
+margin-top:20px;
+
+}
+
+.activity-list{
+
+max-height:320px;
+
+overflow-y:auto;
+
+}
+
+.activity-list li{
+
+animation:fadeSlide .4s;
+
+}
+
+@keyframes fadeSlide{
+
+from{
+
+opacity:0;
+
+transform:translateX(-20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+/* ─── History Table ────────────────────────────────────────── */
+.history-table {
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(20px);
+}
+.history-table .table { color:white; margin:0; }
+.history-table .table th { background:rgba(255,255,255,.05); border:none; padding:18px 20px; }
+.history-table .table td { border-color:rgba(255,255,255,.06); padding:16px 20px; }

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+{% block title %}Detector — TruthLens AI{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/detector.css') }}">{% endblock %}
+
+{% block content %}
+
+<section class="detector-header">
+  <div class="container text-center">
+    <span class="section-tag">AI ANALYSIS</span>
+    <h1 class="mt-3">Fake News Detector</h1>
+    <p class="mt-3">Paste any news article below and let AI analyze whether it is Fake or Real.</p>
+  </div>
+</section>
+
+<section class="detector-section">
+  <div class="container">
+    <div class="row g-4">
+
+      <!-- Input -->
+      <div class="col-lg-8">
+        <div class="glass-box">
+          <h3>📰 News Content</h3>
+          <textarea id="newsText" placeholder="Paste your news article here...&#10;&#10;Example:&#10;Scientists have discovered a revolutionary AI system capable of detecting misinformation..."></textarea>
+          <div class="word-counter" id="wordCounter">Words: 0 &nbsp;|&nbsp; Characters: 0</div>
+          <div class="button-group">
+            <button class="btn btn-primary btn-lg" id="analyzeBtn">🧠 Analyze with AI</button>
+            <button class="btn btn-outline-light btn-lg" id="clearBtn">🗑 Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="col-lg-4">
+        <div class="result-card" id="resultCard">
+          <h4>Prediction</h4>
+          <div class="prediction-icon" id="predictionIcon">🤖</div>
+          <h2 id="prediction">Waiting...</h2>
+
+          <div class="confidence-box">
+            <div class="confidence-header">
+              <span>Confidence</span>
+              <span id="confidenceValue">0%</span>
+            </div>
+            <div class="progress">
+              <div id="confidenceBar" class="progress-bar" style="width:0%"></div>
+            </div>
+          </div>
+
+          <button id="downloadReport" class="btn btn-success mt-4 w-100" disabled>
+            📄 Download PDF Report
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Explainable AI -->
+<section class="explain-section">
+  <div class="container">
+    <div class="glass-box">
+      <h3>🔍 AI Explanation — Top Keywords</h3>
+      <p style="color:var(--sub);margin-top:8px;">These words had the highest influence on the prediction.</p>
+      <ul class="explanation-list" id="explanationList">
+        <li style="color:var(--sub);padding:16px 0;">Run a prediction to see keyword analysis here.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- History -->
+<section class="history-section">
+  <div class="container">
+    <h3 class="mb-4">📋 Recent Predictions</h3>
+    <div class="history-table">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th>Date & Time</th>
+            <th>Preview</th>
+            <th>Verdict</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody">
+          <tr><td colspan="4" style="color:var(--sub);text-align:center;padding:24px;">No predictions yet — analyze your first article above.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- Loading overlay -->
+<div class="loading-screen" id="loading">
+  <div class="loader"></div>
+  <h3 class="mt-4">AI is analyzing...</h3>
+  <p style="color:var(--sub);">Running TF-IDF + ML model</p>
+</div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/detector.js') }}"></script>
+{% endblock %}

@@ -1,0 +1,163 @@
+{% extends "base.html" %}
+{% block title %}Dashboard — TruthLens AI{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/dashboard.css') }}">{% endblock %}
+
+{% block content %}
+
+<section class="dashboard-header">
+  <div class="container">
+    <span class="section-tag">ANALYTICS</span>
+    <h1 class="mt-3">AI Analytics Dashboard</h1>
+    <p>Welcome back, <strong>{{ username }}</strong>. Monitor your predictions and AI performance.</p>
+  </div>
+</section>
+
+<!-- User Stats -->
+<section class="pb-4">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="dashboard-card">
+          <h6>Total Predictions</h6>
+          <h2 id="statTotal">--</h2>
+          <small style="color:var(--sub);">Your analyses</small>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="dashboard-card">
+          <h6>Real News Found</h6>
+          <h2 id="statReal" style="color:#22c55e;">--</h2>
+          <small style="color:var(--sub);">Verified articles</small>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="dashboard-card">
+          <h6>Fake News Caught</h6>
+          <h2 id="statFake" style="color:#ef4444;">--</h2>
+          <small style="color:var(--sub);">Misinformation blocked</small>
+        </div>
+      </div>
+      <div class="col-lg-3 col-md-6">
+        <div class="dashboard-card">
+          <h6>AI Status</h6>
+          <h2 class="online" id="aiStatus">● Online</h2>
+          <small style="color:var(--sub);">Model ready</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Model Metrics -->
+<section class="pb-4">
+  <div class="container">
+    <h4 class="mb-3">Model Performance</h4>
+    <div class="row g-4">
+      <div class="col-lg-3 col-6">
+        <div class="dashboard-card text-center">
+          <h6>Accuracy</h6>
+          <h2 id="accuracyMetric" style="color:#6366f1;">--</h2>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="dashboard-card text-center">
+          <h6>Precision</h6>
+          <h2 id="precisionMetric" style="color:#06b6d4;">--</h2>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="dashboard-card text-center">
+          <h6>Recall</h6>
+          <h2 id="recallMetric" style="color:#22c55e;">--</h2>
+        </div>
+      </div>
+      <div class="col-lg-3 col-6">
+        <div class="dashboard-card text-center">
+          <h6>F1 Score</h6>
+          <h2 id="f1Metric" style="color:#f59e0b;">--</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Charts -->
+<section class="chart-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-8">
+        <div class="chart-card">
+          <h4>Predictions This Week</h4>
+          <canvas id="trendChart" height="100"></canvas>
+        </div>
+      </div>
+      <div class="col-lg-4">
+        <div class="chart-card">
+          <h4>Prediction Split</h4>
+          <div style="position:relative;height:220px;display:flex;align-items:center;justify-content:center;">
+            <canvas id="pieChart"></canvas>
+          </div>
+          <div class="d-flex justify-content-center gap-4 mt-3">
+            <span style="color:#22c55e;">● Real</span>
+            <span style="color:#ef4444;">● Fake</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Live Activity + Clock -->
+<section class="performance-section">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="chart-card">
+          <h4>Live Activity Feed</h4>
+          <ul class="activity-list" id="activityFeed">
+            <li>🟢 System Initialized</li>
+          </ul>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="chart-card text-center">
+          <h4>System Time</h4>
+          <h2 id="liveClock" class="mt-4" style="font-size:3rem;font-weight:700;letter-spacing:2px;">00:00:00</h2>
+          <p style="color:var(--sub);margin-top:8px;" id="liveDate"></p>
+          <div class="mt-4">
+            <a href="{{ url_for('detector') }}" class="btn btn-primary px-4">🧠 New Analysis</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- History Table -->
+<section class="pb-5">
+  <div class="container">
+    <h4 class="mb-4">Recent Prediction History</h4>
+    <div class="history-table">
+      <table class="table mb-0">
+        <thead>
+          <tr>
+            <th>Date</th>
+            <th>Preview</th>
+            <th>Verdict</th>
+            <th>Confidence</th>
+          </tr>
+        </thead>
+        <tbody id="historyBody">
+          <tr><td colspan="4" style="text-align:center;color:var(--sub);padding:24px;">Loading...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script src="{{ url_for('static', filename='js/dashboard.js') }}"></script>
+{% endblock %}

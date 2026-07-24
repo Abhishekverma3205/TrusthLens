@@ -1,0 +1,618 @@
+/*=========================================
+VERINEWS AI DETECTOR PAGE
+=========================================*/
+
+:root{
+
+    --glass:rgba(255,255,255,.06);
+    --glass-border:rgba(255,255,255,.10);
+    --shadow:0 25px 50px rgba(0,0,0,.25);
+
+}
+
+.detector-header{
+
+    padding:90px 0 50px;
+    text-align:center;
+
+}
+
+.detector-header h1{
+
+    font-size:58px;
+    font-weight:700;
+    margin-bottom:20px;
+
+}
+
+.detector-header p{
+
+    font-size:20px;
+    color:var(--sub);
+    max-width:720px;
+    margin:auto;
+    line-height:1.8;
+
+}
+
+/*==============================
+MAIN SECTION
+==============================*/
+
+.detector-section{
+
+    padding:30px 0 80px;
+
+}
+
+.glass-box{
+
+    background:var(--glass);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid var(--glass-border);
+
+    border-radius:30px;
+
+    padding:40px;
+
+    box-shadow:var(--shadow);
+
+}
+
+/*==============================
+TEXTAREA
+==============================*/
+
+textarea{
+
+    width:100%;
+
+    min-height:420px;
+
+    background:rgba(255,255,255,.04);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    border-radius:20px;
+
+    padding:25px;
+
+    resize:none;
+
+    outline:none;
+
+    color:white;
+
+    font-size:16px;
+
+    line-height:1.9;
+
+    margin-top:25px;
+
+    transition:.35s;
+
+}
+
+textarea::placeholder{
+
+    color:#7d8aa7;
+
+}
+
+textarea:focus{
+
+    border-color:#6366f1;
+
+    box-shadow:0 0 30px rgba(99,102,241,.25);
+
+}
+
+/*==============================
+BUTTONS
+==============================*/
+
+.button-group{
+
+    margin-top:30px;
+
+    display:flex;
+
+    gap:20px;
+
+    flex-wrap:wrap;
+
+}
+
+.button-group .btn{
+
+    padding:15px 35px;
+
+    border-radius:50px;
+
+    font-size:17px;
+
+}
+
+/*==============================
+RESULT CARD
+==============================*/
+
+.result-card{
+
+    background:var(--glass);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid var(--glass-border);
+
+    border-radius:30px;
+
+    padding:35px;
+
+    text-align:center;
+
+    box-shadow:var(--shadow);
+
+    position:sticky;
+
+    top:100px;
+
+}
+
+.result-card h4{
+
+    margin-bottom:25px;
+
+}
+
+.prediction-icon{
+
+    width:120px;
+
+    height:120px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:60px;
+
+    background:linear-gradient(135deg,#6366f1,#06b6d4);
+
+    margin-bottom:25px;
+
+    animation:floatRobot 5s ease infinite;
+
+}
+
+#prediction{
+
+    font-size:36px;
+
+    font-weight:700;
+
+    margin-bottom:35px;
+
+}
+
+/*==============================
+CONFIDENCE
+==============================*/
+
+.confidence-box{
+
+    text-align:left;
+
+}
+
+.confidence-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin-bottom:10px;
+
+}
+
+.progress{
+
+    height:14px;
+
+    background:rgba(255,255,255,.06);
+
+    border-radius:50px;
+
+}
+
+.progress-bar{
+
+    background:linear-gradient(
+    90deg,
+    #22c55e,
+    #06b6d4
+    );
+
+    border-radius:50px;
+
+    transition:1s;
+
+}
+
+/*==============================
+EXPLAINABLE AI
+==============================*/
+
+.explain-section{
+
+    padding:60px 0;
+
+}
+
+.explain-section ul{
+
+    margin-top:25px;
+
+}
+
+.explain-section li{
+
+    margin-bottom:18px;
+
+    color:var(--sub);
+
+    line-height:1.8;
+
+}
+
+/*==============================
+HISTORY
+==============================*/
+
+.history-section{
+
+    padding-bottom:120px;
+
+}
+
+.history-table{
+
+    background:var(--glass);
+
+    backdrop-filter:blur(20px);
+
+    border-radius:25px;
+
+    overflow:hidden;
+
+    border:1px solid rgba(255,255,255,.08);
+
+}
+
+.table{
+
+    color:white;
+
+    margin:0;
+
+}
+
+.table th{
+
+    background:rgba(255,255,255,.05);
+
+    border:none;
+
+    padding:20px;
+
+}
+
+.table td{
+
+    border-color:rgba(255,255,255,.05);
+
+    padding:18px;
+
+}
+
+/*==============================
+LOADING
+==============================*/
+
+.loading-screen{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#08111f;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    z-index:9999;
+
+    visibility:hidden;
+
+    opacity:0;
+
+    transition:.35s;
+
+}
+
+.loading-screen.show{
+
+    visibility:visible;
+
+    opacity:1;
+
+}
+
+.loader{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    border:8px solid rgba(255,255,255,.08);
+
+    border-top:8px solid #6366f1;
+
+    animation:spin 1s linear infinite;
+
+}
+
+.loading-screen h3{
+
+    margin-top:35px;
+
+}
+
+/*==============================
+ANIMATIONS
+==============================*/
+
+@keyframes spin{
+
+0%{
+
+transform:rotate(0);
+
+}
+
+100%{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+@keyframes floatRobot{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+
+/*==============================
+HOVER EFFECTS
+==============================*/
+
+.glass-box:hover,
+
+.result-card:hover,
+
+.history-table:hover{
+
+transform:translateY(-6px);
+
+transition:.35s;
+
+box-shadow:0 25px 60px rgba(99,102,241,.18);
+
+}
+
+/*==============================
+RESPONSIVE
+==============================*/
+
+@media(max-width:991px){
+
+.result-card{
+
+margin-top:40px;
+
+position:relative;
+
+top:0;
+
+}
+
+.detector-header h1{
+
+font-size:42px;
+
+}
+
+textarea{
+
+min-height:300px;
+
+}
+
+.button-group{
+
+justify-content:center;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.glass-box,
+
+.result-card{
+
+padding:25px;
+
+}
+
+.detector-header{
+
+padding-top:60px;
+
+}
+
+.detector-header h1{
+
+font-size:34px;
+
+}
+
+.detector-header p{
+
+font-size:16px;
+
+}
+
+.button-group .btn{
+
+width:100%;
+
+}
+
+.prediction-icon{
+
+width:90px;
+
+height:90px;
+
+font-size:45px;
+
+}
+
+#prediction{
+
+font-size:28px;
+
+}
+
+}
+
+
+
+.explanation-list{
+
+list-style:none;
+
+padding:0;
+
+margin-top:20px;
+
+}
+
+.explanation-list li{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:12px 15px;
+
+margin-bottom:10px;
+
+border-radius:12px;
+
+background:rgba(255,255,255,.05);
+
+border:1px solid rgba(255,255,255,.08);
+
+transition:.3s;
+
+}
+
+.explanation-list li:hover{
+
+transform:translateX(6px);
+
+background:rgba(99,102,241,.15);
+
+}
+
+.explanation-list span{
+
+color:#22c55e;
+
+font-weight:600;
+
+}
+/* ─── Keyword Bars (Explainability) ─────────────────────────── */
+.explanation-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  margin-bottom: 8px;
+  border-radius: 14px;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.08);
+  gap: 16px;
+  transition: .25s;
+}
+.explanation-list li:hover {
+  background: rgba(99,102,241,.12);
+  transform: translateX(4px);
+}
+.kw-left { display:flex; align-items:center; gap:12px; min-width:120px; }
+.kw-rank { color: #6366f1; font-size:12px; font-weight:700; width:24px; }
+.kw-word { font-size:15px; }
+.kw-right { display:flex; align-items:center; gap:10px; flex:1; justify-content:flex-end; }
+.kw-bar-wrap { flex:1; max-width:160px; height:8px; background:rgba(255,255,255,.08); border-radius:50px; overflow:hidden; }
+.kw-bar { height:100%; border-radius:50px; transition: width .6s ease; }
+.kw-score { font-size:12px; color:#94a3b8; min-width:52px; text-align:right; }
+
+/* ─── Word Counter ───────────────────────────────────────────── */
+.word-counter {
+  font-size:13px;
+  color:#94a3b8;
+  margin-top:12px;
+  text-align:right;
+}
+
+/* ─── Toast Fade Animation ───────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(12px); }
+  to   { opacity:1; transform:translateY(0); }
+}

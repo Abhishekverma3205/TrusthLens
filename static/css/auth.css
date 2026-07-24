@@ -1,0 +1,568 @@
+/* ===========================================
+   TruthLens AI - Authentication Styles
+   =========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+    --primary:#6366f1;
+    --secondary:#8b5cf6;
+    --accent:#06b6d4;
+    --success:#22c55e;
+    --danger:#ef4444;
+    --text:#ffffff;
+    --sub:#bfc7d5;
+    --glass:rgba(255,255,255,.08);
+    --border:rgba(255,255,255,.12);
+}
+
+body{
+
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    overflow:hidden;
+
+    background:
+    radial-gradient(circle at top left,#312e81 0%,#0f172a 45%,#020617 100%);
+
+    color:white;
+
+    font-family:"Poppins",sans-serif;
+
+    position:relative;
+
+}
+
+/* ===========================================
+   Floating Background
+   =========================================== */
+
+.blob{
+
+    position:absolute;
+
+    width:380px;
+
+    height:380px;
+
+    border-radius:50%;
+
+    filter:blur(80px);
+
+    opacity:.45;
+
+    animation:floatBlob 14s ease-in-out infinite;
+
+}
+
+.one{
+
+    background:#6366f1;
+
+    top:-120px;
+
+    left:-120px;
+
+}
+
+.two{
+
+    background:#06b6d4;
+
+    bottom:-150px;
+
+    right:-120px;
+
+    animation-delay:4s;
+
+}
+
+@keyframes floatBlob{
+
+    0%{
+
+        transform:translateY(0) scale(1);
+
+    }
+
+    50%{
+
+        transform:translateY(40px) scale(1.12);
+
+    }
+
+    100%{
+
+        transform:translateY(0) scale(1);
+
+    }
+
+}
+
+/* ===========================================
+   Login Card
+   =========================================== */
+
+.login-card{
+
+    width:450px;
+
+    max-width:92%;
+
+    background:rgba(255,255,255,.08);
+
+    backdrop-filter:blur(25px);
+
+    border:1px solid rgba(255,255,255,.15);
+
+    border-radius:28px;
+
+    padding:45px;
+
+    box-shadow:
+
+    0 25px 60px rgba(0,0,0,.35);
+
+    animation:fadeUp .9s;
+
+}
+
+@keyframes fadeUp{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(40px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+.login-card h2{
+
+    font-size:34px;
+
+    text-align:center;
+
+    margin-bottom:10px;
+
+    font-weight:700;
+
+}
+
+.login-card p{
+
+    text-align:center;
+
+    color:var(--sub);
+
+    margin-bottom:35px;
+
+}
+
+/* ===========================================
+   Inputs
+   =========================================== */
+
+form{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+input{
+
+    width:100%;
+
+    height:56px;
+
+    border:none;
+
+    outline:none;
+
+    border-radius:16px;
+
+    padding:0 18px;
+
+    background:rgba(255,255,255,.06);
+
+    border:1px solid rgba(255,255,255,.08);
+
+    color:white;
+
+    font-size:15px;
+
+    transition:.35s;
+
+}
+
+input::placeholder{
+
+    color:#cbd5e1;
+
+}
+
+input:focus{
+
+    border-color:#6366f1;
+
+    box-shadow:
+
+    0 0 18px rgba(99,102,241,.35);
+
+}
+
+/* ===========================================
+   Password
+   =========================================== */
+
+.password-box{
+
+    position:relative;
+
+}
+
+.password-box i{
+
+    position:absolute;
+
+    right:18px;
+
+    top:50%;
+
+    transform:translateY(-50%);
+
+    cursor:pointer;
+
+    font-size:22px;
+
+    color:#d1d5db;
+
+    transition:.3s;
+
+}
+
+.password-box i:hover{
+
+    color:white;
+
+}
+
+/* ===========================================
+   Button
+   =========================================== */
+
+button{
+
+    height:56px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:linear-gradient(
+        135deg,
+        var(--primary),
+        var(--secondary)
+    );
+
+    color:white;
+
+    font-size:17px;
+
+    font-weight:600;
+
+    cursor:pointer;
+
+    transition:.35s;
+
+}
+
+button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+
+    0 15px 30px rgba(99,102,241,.35);
+
+}
+
+/* ===========================================
+   Links
+   =========================================== */
+
+a{
+
+    text-align:center;
+
+    color:#8ab4ff;
+
+    text-decoration:none;
+
+    transition:.3s;
+
+}
+
+a:hover{
+
+    color:white;
+
+}
+
+/* ===========================================
+   Strength Meter
+   =========================================== */
+
+.strength{
+
+    width:100%;
+
+    height:8px;
+
+    border-radius:50px;
+
+    background:rgba(255,255,255,.08);
+
+    overflow:hidden;
+
+}
+
+#strengthBar{
+
+    width:0;
+
+    height:100%;
+
+    border-radius:50px;
+
+    transition:.35s;
+
+}
+
+/* ===========================================
+   Flash Messages
+   =========================================== */
+
+.alert{
+
+    border:none;
+
+    border-radius:14px;
+
+    backdrop-filter:blur(10px);
+
+}
+
+/* ===========================================
+   Floating Card Glow
+   =========================================== */
+
+.login-card::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-2px;
+
+    border-radius:28px;
+
+    background:
+
+    linear-gradient(
+        135deg,
+        rgba(99,102,241,.35),
+        transparent,
+        rgba(6,182,212,.35)
+    );
+
+    z-index:-1;
+
+    filter:blur(18px);
+
+}
+
+/* ===========================================
+   Hover Animation
+   =========================================== */
+
+.login-card:hover{
+
+    transform:translateY(-6px);
+
+    transition:.4s;
+
+}
+
+/* ===========================================
+   Autofill Fix
+   =========================================== */
+
+input:-webkit-autofill{
+
+    -webkit-box-shadow:0 0 0 1000px rgba(255,255,255,.06) inset !important;
+
+    -webkit-text-fill-color:white !important;
+
+}
+
+/* ===========================================
+   Responsive
+   =========================================== */
+
+@media(max-width:768px){
+
+.login-card{
+
+padding:35px 25px;
+
+}
+
+.login-card h2{
+
+font-size:28px;
+
+}
+
+input{
+
+height:52px;
+
+}
+
+button{
+
+height:52px;
+
+}
+
+}
+
+@media(max-width:480px){
+
+body{
+
+padding:20px;
+
+}
+
+.login-card{
+
+padding:28px 20px;
+
+border-radius:22px;
+
+}
+
+.login-card h2{
+
+font-size:24px;
+
+}
+
+.login-card p{
+
+font-size:14px;
+
+}
+
+input{
+
+font-size:14px;
+
+}
+
+button{
+
+font-size:15px;
+
+}
+
+}
+
+/* ===========================================
+   Smooth Fade
+   =========================================== */
+
+body{
+
+animation:pageFade .7s;
+
+}
+
+@keyframes pageFade{
+
+from{
+
+opacity:0;
+
+}
+
+to{
+
+opacity:1;
+
+}
+
+}
+
+/* ===========================================
+   Scrollbar
+   =========================================== */
+
+::-webkit-scrollbar{
+
+width:8px;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+background:rgba(255,255,255,.12)    ;
+
+border-radius:20px;
+
+}
+
+::-webkit-scrollbar-track{
+
+background:#111827;
+
+}
+/* ─── Brand Logo ───────────────────────────────────────────── */
+.brand {
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 16px;
+  background: linear-gradient(135deg, #6366f1, #06b6d4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* fix: login-card position for ::before pseudo */
+.login-card { position: relative; }

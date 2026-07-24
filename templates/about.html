@@ -1,0 +1,80 @@
+{% extends "base.html" %}
+{% block title %}About — TruthLens AI{% endblock %}
+{% block extra_css %}<link rel="stylesheet" href="{{ url_for('static', filename='css/about.css') }}">{% endblock %}
+
+{% block content %}
+
+<section class="hero-about">
+  <div class="container text-center">
+    <span class="section-tag">ABOUT THE PROJECT</span>
+    <h1 class="mt-3">The AI Behind TruthLens</h1>
+    <p class="mt-3">Powered by Machine Learning, Natural Language Processing, and Explainable AI.</p>
+  </div>
+</section>
+
+<section class="about-content">
+  <div class="container">
+    <div class="row g-4">
+      <div class="col-lg-6">
+        <div class="glass-card">
+          <h3>🎯 Mission</h3>
+          <p>TruthLens AI is designed to combat misinformation using modern Artificial Intelligence. The system analyzes linguistic patterns, writing style, and statistical features before classifying articles as Real or Fake.</p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="glass-card">
+          <h3>🚀 Vision</h3>
+          <p>Build a trustworthy ecosystem where AI assists users in identifying misinformation quickly and accurately — making credible information accessible to everyone.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="timeline-section">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag">HOW IT WORKS</span>
+      <h2 class="section-title mt-3">AI Workflow</h2>
+    </div>
+    <div class="timeline">
+      {% for step, title, desc in [
+        (1,"News Input","User pastes a news article or paragraph into the detector."),
+        (2,"Text Cleaning","Stopword removal, tokenization, and text preprocessing."),
+        (3,"TF-IDF Vectorization","Converts cleaned text into a 50,000-dimensional numerical feature vector."),
+        (4,"ML Prediction","PassiveAggressiveClassifier predicts Fake or Real based on learned patterns."),
+        (5,"Explainability","Top TF-IDF keywords are surfaced to explain the prediction."),
+        (6,"PDF Report","A professional report is generated and available for download.")
+      ] %}
+      <div class="timeline-item">
+        <div class="circle">{{ step }}</div>
+        <div class="content">
+          <h4>{{ title }}</h4>
+          <p>{{ desc }}</p>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="tech-section pb-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <span class="section-tag">STACK</span>
+      <h2 class="section-title mt-3">Technology Used</h2>
+    </div>
+    <div class="row g-4">
+      {% for icon, name in [("🐍","Python"),("🧠","Scikit-Learn"),("📊","Pandas / NumPy"),("⚙️","Flask"),("🎨","Bootstrap 5"),("📄","ReportLab PDF"),("🗄️","SQLite"),("☁️","Render Deploy")] %}
+      <div class="col-lg-3 col-md-4 col-6">
+        <div class="tech-card">
+          <div style="font-size:3rem;">{{ icon }}</div>
+          <h5 class="mt-3">{{ name }}</h5>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock %}
