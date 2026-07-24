@@ -3,7 +3,7 @@ services:
     name: truthlens
     env: python
 
-    pythonVersion: "3.14.3"
+    pythonVersion: "3.11.9"
 
     buildCommand: |
       python -m pip install --upgrade pip
